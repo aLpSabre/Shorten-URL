@@ -30,7 +30,7 @@ console.log(short_link);
 
 features.innerHTML=` 
 <div
-class="container results d-flex justify-content-between align-items-center p-3 bg-white rounded-4 mb-3 flex-nowrap"
+class="container results d-flex justify-content-between align-items-center p-4 bg-white rounded-4 mb-3 flex-nowrap"
 >
 <input type="text" value="${original_link}" readonly></input>
 
@@ -38,6 +38,7 @@ class="container results d-flex justify-content-between align-items-center p-3 b
   <input type="text" class="result me-3" value="${short_link}" readonly></input>
   <button class="copied get-started-button"  >Copy</button>
 </div>
+<i class="fa fa-times" aria-hidden="true"></i>
 </div>`+features.innerHTML 
 }
 
@@ -64,5 +65,7 @@ features.addEventListener("click",(e)=>{
       e.target.innerText="Copy"
       e.target.style.backgroundColor="var(--cyan)";
     },4000)
+  }else if(e.target.classList.contains("fa-times")){
+    e.target.parentElement.remove();
   }
 })
