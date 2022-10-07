@@ -169,6 +169,7 @@ footer ul li:hover {
 }
 .result-right input {
   color: var(--cyan);
+  text-align: right;
 }
 .results inputt:active{
   border: none;
@@ -263,12 +264,17 @@ footer ul li:hover {
   }
   .results input{
     margin-bottom: 10px;
+    padding-left: 5px;
   }
   .results > input{
     border-bottom: 1px solid var(--gray);
     padding-bottom: 10px;
 
   }
+  .result-right input {
+    text-align: left;
+  }
+  
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
