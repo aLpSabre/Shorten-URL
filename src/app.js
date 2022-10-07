@@ -64,6 +64,5 @@ features.addEventListener("click",(e)=>{
       e.target.innerText="Copy"
       e.target.style.backgroundColor="var(--cyan)";
     },4000)
-   
   }
 })
