@@ -32,11 +32,11 @@ features.innerHTML=`
 <div
 class="container results d-flex justify-content-between align-items-center p-3 bg-white rounded-4 mb-3 flex-nowrap"
 >
-<a href="${original_link}" target="_blank"  >${original_link}</a>
+<input type="text" value="${original_link}" readonly></input>
 
 <div class="result-right">
-  <a href="${full_short_link}" target="_blank" class="result me-3">${short_link}</a>
-  <button class="copied get-started-button"  >Copied</button>
+  <input type="text" class="result me-3" value="${short_link}" readonly></input>
+  <button class="copied get-started-button"  >Copy</button>
 </div>
 </div>`+features.innerHTML 
 }
@@ -52,4 +52,18 @@ shortenBtn.addEventListener("click",()=>{
 })
 
 
-
+features.addEventListener("click",(e)=>{
+  console.log(e.target.classList.contains("copied"));
+  if(e.target.classList.contains("copied")){
+   
+     let copyText=  e.target.previousElementSibling
+     navigator.clipboard.writeText(copyText.value);
+     e.target.innerText="Copied"
+     e.target.style.backgroundColor="var(--darkViolet)";
+    setTimeout(()=>{
+      e.target.innerText="Copy"
+      e.target.style.backgroundColor="var(--cyan)";
+    },4000)
+   
+  }
+})

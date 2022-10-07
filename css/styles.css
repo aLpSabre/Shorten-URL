@@ -161,12 +161,18 @@ footer ul li:hover {
   color: white;
   cursor: pointer;
 }
-.results a {
+.results input {
   text-decoration: none;
   color: var(--veryDarkBlue);
+  border: none;
+  outline:none;
 }
-.result-right a {
+.result-right input {
   color: var(--cyan);
+}
+.results inputt:active{
+  border: none;
+  outline:none;
 }
 @media (max-width: 992px) {
   #navbarSupportedContent {
@@ -250,15 +256,15 @@ footer ul li:hover {
   .results {
     display: block !important;
   }
-  .results a,.results button{
+  .results input,.results button{
     display: block !important;
     width: 100%;
    
   }
-  .results a{
+  .results input{
     margin-bottom: 10px;
   }
-  .results > a{
+  .results > input{
     border-bottom: 1px solid var(--gray);
     padding-bottom: 10px;
 
