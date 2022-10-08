@@ -12,8 +12,11 @@
 }
 .nav-link {
   color: var(--grayishViolet) !important;
-
   margin-right: 20px;
+
+}
+.nav-link:hover:not(.sign-up-button) {
+  color: var(--darkViolet) !important;
 }
 .sign-up-button,
 .get-started-button,
@@ -167,14 +170,18 @@ footer ul li:hover {
 .fa-times{
   position: absolute;
   top: 0;
-  right: 4px;
+  right: 8px;
+
+}
+.place-holder::-webkit-input-placeholder {
+  color: #b2cde0
 }
 .fa-times::before{
 color: black;
   font-size: 15px;
   cursor: pointer;
 }
-.results input {
+.results input,#linkInput {
   text-decoration: none;
   color: var(--veryDarkBlue);
   border: none;
@@ -187,7 +194,7 @@ color: black;
   color: var(--cyan);
   text-align: right;
 }
-.results input:active{
+.results input:active,#linkInput:active{
   border: none;
   outline:none;
 }
@@ -215,6 +222,9 @@ color: black;
   #home h1 {
     font-size: 40px;
     line-height: 4rem;
+  }
+  .nav-link:hover:not(.sign-up-button) {
+    color: var(--grayishViolet) !important;
   }
   #illustration {
     width: 150%;
@@ -275,7 +285,7 @@ color: black;
   }
   .results input,.results button{
     display: block !important;
-    width:99%;
+    width:95%;
    
   }
   .results input{
