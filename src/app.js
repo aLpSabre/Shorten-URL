@@ -1,8 +1,10 @@
+//* Elements *//
 const features = document.getElementById("features");
 const errorMsg = document.getElementById("errorMsg")
 const linkInput = document.getElementById("linkInput")
 const shortenBtn = document.querySelector(".shorten-btn");
 
+//* Placeholder Style *//
 const style = document.createElement("style")
 style.type = "text/css"
 const {
@@ -12,10 +14,13 @@ const {
 const rule = sheet.insertRule("::placeholder {}")
 const placeholderStyle = sheet.rules[rule].style;
 
+//* Local Storage Links *//
 let links = JSON.parse(localStorage.getItem("LINKS")) || [];
 let searchedLinks = JSON.parse(localStorage.getItem("SEARCHED_LINKS")) || [];
-function renderLinks(links) {
 
+
+//* Show the links on the local at load *//
+function renderLinks(links) {
 
   links.forEach(element => {
     features.innerHTML = ` 
@@ -30,12 +35,12 @@ function renderLinks(links) {
   </div>
   <i class="fa fa-times" aria-hidden="true"></i>
   </div>`+ features.innerHTML
+});
+}renderLinks(links);
 
-  });
 
 
-}
-renderLinks(links);
+//* Get the shorten link from the API *//
 const getShorten = async function (link) {
   try {
     let response = await fetch(`https://api.shrtco.de/v2/shorten?url=${link}`);
@@ -47,10 +52,11 @@ const getShorten = async function (link) {
     renderData(data);
   }
   catch (error) {
-    console.log(error);
+  
   }
 }
 
+//* Render all type of errors and show *//
 const renderError = (type) => {
 
   if (type == "url") {
@@ -71,13 +77,18 @@ const renderError = (type) => {
   }, 4000)
 }
 
+//* Render Data *//
 const renderData = (data) => {
 
+//* Data Destructure *//
   let { ok, result: { short_link, original_link, full_short_link } } = data;
-  console.log(ok, "ok");
 
+
+//* Check if the response is ok and if the links is searched before*//
   if (ok && searchedLinks.indexOf(short_link) == -1) {
+
     let newLink = { short_link: short_link, original_link: original_link }
+
     links.push(newLink);
     localStorage.setItem("LINKS", JSON.stringify(links));
 
@@ -103,7 +114,9 @@ const renderData = (data) => {
 
 }
 
+//* Shorthen Button *//
 shortenBtn.addEventListener("click", () => {
+  //* Check if the links is given *//
   if (linkInput.value.length < 1) {
     renderError("empty");
     return;
@@ -113,9 +126,9 @@ shortenBtn.addEventListener("click", () => {
   errorMsg.innerText = "";
 })
 
-
+//* Update the features page with the shorten links *//
 features.addEventListener("click", (e) => {
-  console.log(e.target.classList.contains("copied"));
+ //* Copy the shorten link *//
   if (e.target.classList.contains("copied")) {
 
     let copyText = e.target.previousElementSibling
@@ -128,7 +141,8 @@ features.addEventListener("click", (e) => {
       e.target.style.backgroundColor = "var(--cyan)";
     }, 4000)
 
-  } else if (e.target.classList.contains("fa-times")) {
+  }//* Remove the shorten link and uptade the local storage*// 
+  else if (e.target.classList.contains("fa-times")) {
 
     e.target.parentElement.remove();
 
@@ -137,5 +151,11 @@ features.addEventListener("click", (e) => {
  
     searchedLinks.splice(searchedLinks.indexOf(e.target.parentElement.querySelector(".result").value),1);
     localStorage.setItem("SEARCHED_LINKS", JSON.stringify(searchedLinks));
+  }
+})
+//* Get Input with the enter *// 
+linkInput.addEventListener("keypress",(e)=>{
+  if (e.code == "Enter" || e.code == "NumpadEnter") {
+    shortenBtn.click();
   }
 })
