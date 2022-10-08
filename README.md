@@ -31,7 +31,7 @@ Users should be able to:
 
 Users should be able to:
 
-- Not searched for a link, if it's already been shown on the page
+- Not search for a link, if it's already been shown on the page
 - Receive an error message when the `form` is submitted if:
   - The `input` is unvalid
   - The `input` is already searched
