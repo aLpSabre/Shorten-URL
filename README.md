@@ -27,7 +27,7 @@ Users should be able to:
 - Receive an error message when the `form` is submitted if:
   - The `input` field is empty
 
---I also added: 
+--I also added this functionalies: 
 
 Users should be able to:
 
